@@ -175,11 +175,11 @@ def main():
     
     # SIDEBAR
     with st.sidebar:
-        st.title("🌿 Vrtnarski Pomagalec")
+        st.title("Vrtnarski Pomagalec")
         st.divider()
         
         # Sezonski nasveti
-        with st.expander("📅 Sezonski nasveti", expanded=False):
+        with st.expander("Sezonski nasveti", expanded=False):
             current_month = datetime.now().month
             if 3 <= current_month <= 5:
                 st.write("**SPOMLAD:** Sadite čebulice, obrezujte grmovnice")
@@ -205,7 +205,7 @@ def main():
         st.divider()
         
         # Hitri nasveti
-        st.subheader("💡 Hitri nasveti")
+        st.subheader("Hitri nasveti")
         tips = [
             "Rastline zalivaj zjutraj ali zvečer",
             "Prekomerno zalivanje škoduje koreninam",
@@ -221,22 +221,22 @@ def main():
         # Gumbi za upravljanje
         col1, col2 = st.columns(2)
         with col1:
-            if st.button("🔄 Ponastavi", use_container_width=True):
+            if st.button("Ponastavi", use_container_width=True):
                 st.session_state.messages = []
                 st.session_state.chat_history = []
                 st.rerun()
         
         with col2:
-            if st.button("💾 Kopiraj", use_container_width=True):
+            if st.button("Kopiraj", use_container_width=True):
                 st.info("Pogovor se samodejno shrani v seji")
         
         # Števec
         st.divider()
         st.write(f"Sporočil v pogovoru: **{len(st.session_state.messages)}**")
-        st.caption("Model: Mixtral 8x7B | 🌿 Specializacija: Vrtnarjenje")
+        st.caption("Model: Mixtral 8x7B | Specializacija: Vrtnarjenje")
     
     # GLAVNO OBMOČJE
-    st.title("🌱 Dobrodošli v Svetu Vrtnarjenja!")
+    st.title("Dobrodošli v Svetu Vrtnarjenja!")
     
     # Uvodno sporočilo
     with st.expander("Kaj lahko vprašate?", expanded=True):
@@ -314,7 +314,7 @@ def main():
         
         # Generiraj odgovor
         with st.chat_message("assistant", avatar="🌿"):
-            with st.spinner("🌱 Razmišljam o odgovoru..."):
+            with st.spinner("Razmišljam o odgovoru..."):
                 odgovor = generiraj_odgovor(client, vprasanje)
                 
                 # Formatiran odgovor
