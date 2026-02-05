@@ -8,8 +8,8 @@ from datetime import datetime
 
 # 2. NASTAVITEV STRANI
 st.set_page_config(
-    page_title="🌿 Moj Vrtnarski Pomagalec",
-    page_icon="🌱",
+    page_title="Moj Vrtnarski Pomagalec",
+    page_icon="",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -35,7 +35,7 @@ def get_groq_client():
             load_dotenv()
             api_key = os.getenv("GROQ_API_KEY")
         except:
-            st.error("❌ API ključ ni bil najden! Dodaj ga v .env datoteko.")
+            st.error("API ključ ni bil najden! Dodaj ga v .env datoteko.")
             st.info("""
             **Navodila za .env datoteko:**
             1. V mapi CHATBOT odpri datoteko `.env` (ali ustvari novo)
@@ -52,19 +52,19 @@ def get_system_message():
     
     specializacija = """Ti si VRTNAR SPECIALIST - strokovnjak za vrtnarjenje in rastlinstvo.
 
-🌿 **Tvoja specializacija (SAMO te teme):**
-1. 🌱 VZGOJA RASTLIN (zelenjave, rož, dreves, zelišč)
-2. 🏡 VRSTI VRTOV (čebulnični, zeliščni, zelenjavni, okrasni)
-3. 📅 SEZONSKA VRTNARJENJA (spomladanska, poletna, jesenska, zimska)
-4. 🌧️ NEGA RASTLIN (zalivanje, gnojenje, obrezovanje)
-5. 🐛 BOLESNI IN ŠKODLJIVCI (prepoznavanje in zdravljenje)
-6. 🌍 ZEMLJA IN SUBSTRATI (vrste tal, izboljšave)
-7. 🪴 SOBAŃKE RASTLINE in njihova nega
-8. ♻️ EKOLOŠKO VRTNARJENJE (kompostiranje, naravni škodljivci)
-9. 💧 NAVADILNI SISTEMI in varčevanje z vodo
-10. 🌞 LEGA VRTA (sončna/senčna mesta)
+**Tvoja specializacija (SAMO te teme):**
+1. VZGOJA RASTLIN (zelenjave, rož, dreves, zelišč)
+2. VRSTI VRTOV (čebulnični, zeliščni, zelenjavni, okrasni)
+3. SEZONSKA VRTNARJENJA (spomladanska, poletna, jesenska, zimska)
+4. NEGA RASTLIN (zalivanje, gnojenje, obrezovanje)
+5. BOLESNI IN ŠKODLJIVCI (prepoznavanje in zdravljenje)
+6. ZEMLJA IN SUBSTRATI (vrste tal, izboljšave)
+7. SOBAŃKE RASTLINE in njihova nega
+8. EKOLOŠKO VRTNARJENJE (kompostiranje, naravni škodljivci)
+9.  SISTEMI in varčevanje z vodo
+10. LEGA VRTA (sončna/senčna mesta)
 
-🚫 **TEME IZVEN SPECIALIZACIJE (NE odgovarjaj):**
+**TEME IZVEN SPECIALIZACIJE (NE odgovarjaj):**
 - Politika, novosti, aktualni dogodki
 - Kuhinja, recepti, kulinarika
 - Šport, zabava, celebrity
@@ -74,7 +74,7 @@ def get_system_message():
 - Zdravstvo, medicina (razen rastlinskih bolezni)
 - Vse ostalo, kar ni direktno povezano z vrtnarjenjem
 
-📝 **PRAVILA ZA ODGOVARJANJE:**
+**PRAVILA ZA ODGOVARJANJE:**
 1. Odgovarjaj IZKLJUČNO V SLOVENŠČINI!
 2. Odgovori morajo biti praktični, natančni in koristni
 3. Vključi konkretne podatke (temperature, čase, mere)
@@ -84,16 +84,16 @@ def get_system_message():
 7. Vedno ohranjaj prijazen, profesionalen ton
 8. Za vprašanja izven specializacije VLJUJNO ZAVRNI
 
-🎯 **PRIMERI ZAVRNITVE:**
+**PRIMERI ZAVRNITVE:**
 - "Oprostite, ampak moja specializacija je samo vrtnarjenje in rastlinstvo. Za vprašanja o [tema] vam ne morem pomagati."
 - "Kot vrtnarski specialist se osredotočam samo na rastline in vrtove. Vprašanje o [tema] žal ne spada v moj strokovni krog."
 - "Na žalost sem omejen na vrtnarska vprašanja. Za informacije o [tema] boste potrebovali druge vire."
 
-🌼 **FORMAT ODGOVOROV:**
+**FORMAT ODGOVOROV:**
 - Uporabi jasne korake in naslove
 - Za pomembne informacije uporabi **krepko pisavo**
-- Za sezone uporabi 📅 emojije
-- Za težavnost uporabi ⭐ zvezdice
+- Za sezone uporabi emojije
+- Za težavnost uporabi zvezdice
 - Za tabele uporabi Markdown formate
 
 ⚠️ **POMEMBNO:** Nikoli ne odgovarjaj na vprašanja, ki niso o vrtnarjenju! Vedno ostani znotraj svoje specializacije."""
@@ -108,6 +108,7 @@ def generiraj_odgovor(client, uporabnisko_vprasanje):
     sporocila_za_ai = [get_system_message()]
     
     # Dodaj zgodovino (zadnjih 10 sporočil za kontekst)
+    
     for sporocilo in st.session_state.chat_history[-10:]:
         sporocila_za_ai.append(sporocilo)
     
@@ -134,7 +135,7 @@ def generiraj_odgovor(client, uporabnisko_vprasanje):
         return odgovor
         
     except Exception as e:
-        return f"❌ Napaka pri komunikaciji z AI: {str(e)}\n\nPoskusite znova."
+        return f"Napaka pri komunikaciji z AI: {str(e)}\n\nPoskusite znova."
 
 # 7. FUNKCIJA ZA PRIKAZ ZGODOVINE
 def prikazi_zgodovino():
@@ -191,14 +192,14 @@ def main():
         
         st.divider()
         
-        st.subheader("ℹ️ O chatbota")
+        st.subheader("ℹO chatbota")
         st.write("""
         **Specializacija:** Vrtnarjenje in rastlinstvo  
         **Jezik:** Slovenščina  
         **Področja:** Zelenjava, rože, drevesa, zelišča  
         
-        🌱 Ohranja kontekst trenutnega pogovora  
-        🔄 Ponastavi se ob osvežitvi strani
+        Ohranja kontekst trenutnega pogovora  
+        Ponastavi se ob osvežitvi strani
         """)
         
         st.divider()
@@ -206,11 +207,11 @@ def main():
         # Hitri nasveti
         st.subheader("💡 Hitri nasveti")
         tips = [
-            "🌅 Rastline zalivaj zjutraj ali zvečer",
-            "🌧️ Prekomerno zalivanje škoduje koreninam",
-            "🪲 Naravni škodljivci: polži, uši, gosenice",
-            "♻️ Kompost je najboljši gnojilo",
-            "🌞 Poznaj potrebe rastlin po svetlobi"
+            "Rastline zalivaj zjutraj ali zvečer",
+            "Prekomerno zalivanje škoduje koreninam",
+            "Naravni škodljivci: polži, uši, gosenice",
+            "Kompost je najboljši gnojilo",
+            "Poznaj potrebe rastlin po svetlobi"
         ]
         for tip in tips:
             st.write(f"- {tip}")
@@ -231,19 +232,19 @@ def main():
         
         # Števec
         st.divider()
-        st.write(f"💬 Sporočil v pogovoru: **{len(st.session_state.messages)}**")
+        st.write(f"Sporočil v pogovoru: **{len(st.session_state.messages)}**")
         st.caption("Model: Mixtral 8x7B | 🌿 Specializacija: Vrtnarjenje")
     
     # GLAVNO OBMOČJE
     st.title("🌱 Dobrodošli v Svetu Vrtnarjenja!")
     
     # Uvodno sporočilo
-    with st.expander("🎯 Kaj lahko vprašate?", expanded=True):
+    with st.expander("Kaj lahko vprašate?", expanded=True):
         col1, col2, col3 = st.columns(3)
         
         with col1:
             st.markdown("""
-            **🌿 Začetniki:**
+            **Začetniki:**
             - Kako začeti z vrtom?
             - Katere rastline so najlažje?
             - Kaj potrebujem za začetek?
@@ -251,7 +252,7 @@ def main():
         
         with col2:
             st.markdown("""
-            **🪴 Nega rastlin:**
+            **Nega rastlin:**
             - Kako zalivati?
             - Kdaj gnojiti?
             - Kako prepoznati bolezni?
@@ -259,7 +260,7 @@ def main():
         
         with col3:
             st.markdown("""
-            **📅 Sezonsko:**
+            **Sezonsko:**
             - Kaj saditi spomladi?
             - Kako pripraviti vrt na zimo?
             - Katere rože cvetijo poleti?
@@ -268,33 +269,33 @@ def main():
     st.divider()
     
     # Hitri vprašanja
-    st.subheader("🚀 Hitra vprašanja")
+    st.subheader("Hitra vprašanja")
     quick_questions = st.columns(4)
     
     with quick_questions[0]:
-        if st.button("🌹 Rože", use_container_width=True):
+        if st.button("Rože", use_container_width=True):
             st.session_state.messages.append({"role": "user", "content": "Katere rože so najboljše za začetnike?"})
             st.rerun()
     
     with quick_questions[1]:
-        if st.button("🥕 Zelenjava", use_container_width=True):
+        if st.button("Zelenjava", use_container_width=True):
             st.session_state.messages.append({"role": "user", "content": "Katero zelenjavo lahko sadim spomladi?"})
             st.rerun()
     
     with quick_questions[2]:
-        if st.button("🌳 Drevesa", use_container_width=True):
+        if st.button("Drevesa", use_container_width=True):
             st.session_state.messages.append({"role": "user", "content": "Kdaj je najboljši čas za sajenje dreves?"})
             st.rerun()
     
     with quick_questions[3]:
-        if st.button("🪴 Sobanke", use_container_width=True):
+        if st.button("Sobanke", use_container_width=True):
             st.session_state.messages.append({"role": "user", "content": "Katere sobanske rastline so najbolj okrepčujoče?"})
             st.rerun()
     
     st.divider()
     
     # Prikaz pogovora
-    st.subheader("💬 Pogovor")
+    st.subheader("Pogovor")
     prikazi_zgodovino()
     
     # Vnosno polje
@@ -321,9 +322,9 @@ def main():
                 
                 # Dodaj emojije glede na vsebino
                 if "zalivanje" in vprasanje.lower():
-                    st.caption("💧 Pomembno: Prekomerno zalivanje je pogosta napaka!")
+                    st.caption("Pomembno: Prekomerno zalivanje je pogosta napaka!")
                 elif "gnojenje" in vprasanje.lower():
-                    st.caption("🌱 Nasvet: Uporabi naravna gnojila za boljše rezultate!")
+                    st.caption("Nasvet: Uporabi naravna gnojila za boljše rezultate!")
         
         # Shrani odgovor
         st.session_state.messages.append({"role": "assistant", "content": odgovor})
