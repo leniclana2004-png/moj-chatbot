@@ -1,0 +1,47 @@
+# Virtualno okolje
+.venv/
+venv/
+env/
+
+# API ključi in skrivnosti
+.env
+*.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# API ključi (dodatna varnost)
+secrets.json
+keys.json
+config.json
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Streamlit cache
+.streamlit/
+data/
+
+# IDE datoteke
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Sistemne datoteke
+.DS_Store
+Thumbs.db
+
+# Log datoteke
+*.log
+
+# Testne datoteke
+test*.py
+
+# Git mapi
+.git/
