@@ -117,7 +117,7 @@ def generiraj_odgovor(client, uporabnisko_vprasanje):
     try:
         # Pokliči Groq API
         completion = client.chat.completions.create(
-            model="mixtral-8x7b-32768",
+            model="llama-3.3-70b-versatile",
             messages=sporocila_za_ai,
             temperature=0.7,
             max_tokens=1200,
